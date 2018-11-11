@@ -28,6 +28,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Shim to load environment variables from .env into ENV in development
 gem "dotenv-rails"
 
+# RuboCop is a Ruby static code analyzer
+gem "rubocop", require: false
+
+# Generates swagger-ui json files for Rails APIs with a simple DSL.
+gem "swagger-blocks"
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -41,6 +47,18 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  # Use to clean database before and after tests with RSpec
+  gem "database_cleaner"
+  # Use for codeclimate test coverage
+  gem "simplecov", require: false
+  gem "codeclimate-test-reporter", "~> 1.0.0"
+  # Collection of testing matchers
+  gem "shoulda-matchers", "~> 3.1"
+  # Validate the JSON returned by your Rails JSON APIs
+  gem "json_matchers"
 end
 
 
