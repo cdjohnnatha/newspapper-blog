@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgresdb:
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/var/www/newspapper_blog
+      - bundle-data:/var/www/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgresdb
+  swaggereditor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres-data:
+    driver: local
+  bundle-data:
+    driver: local
