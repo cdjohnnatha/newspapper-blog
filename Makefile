@@ -40,8 +40,8 @@ createdb:
 	bundle exec rails db:seed
 	bundle exec rails db:test:prepare
 
-# yarn-install:
-# 	${DCMP_RUN_APP} yarn install --modules-folder public/packs
+yarn-install:
+	${DCMP_RUN_APP} yarn install --modules-folder public/packs
 
 build_postgresdb:
 	docker run -d --hostname postgresdb -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -v pg_data:/var/lib/postgresql/data postgres:9.6

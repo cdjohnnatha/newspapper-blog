@@ -125,6 +125,7 @@ RSpec.describe "Users", type: :request do
         end
       end
     end
+
     context "DELETE" do
       context "when logged in" do
         context "valid_user_attrs" do
