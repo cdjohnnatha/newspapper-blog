@@ -11,6 +11,12 @@ module RequestHelper
     end
     object.to_json
   end
+  def makeJsonRelationship(className, id, attributes, parentClassName, parentId)
+    object = JSON.parse(makeJson(className, id, attributes))
+    relationObject = { "#{parentClassName}": { data: { "type": "#{parentClassName.pluralize}", "id": "#{parentId}" } } }
+    object["data"]["relationships"] = relationObject
+    object.to_json
+  end
 end
 
 RSpec.configure do |config|

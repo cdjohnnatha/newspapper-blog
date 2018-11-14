@@ -18,6 +18,8 @@ gem "puma", "~> 3.11"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
 
+# Seamless JWT authentication for Rails API
+gem "knock"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

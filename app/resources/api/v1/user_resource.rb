@@ -2,6 +2,8 @@
 
 module Api::V1
   class UserResource < JSONAPI::Resource
+    has_many :articles
+
     attributes :name, :email, :password
 
     def fetchable_fields

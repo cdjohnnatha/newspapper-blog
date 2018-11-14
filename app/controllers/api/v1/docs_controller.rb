@@ -42,6 +42,8 @@ module Api::V1
     SWAGGERED_CLASSES = [
       Docs::User,
       Docs::V1::UsersController,
+      Docs::Article,
+      Docs::V1::ArticlesController,
       self,
     ].freeze
 

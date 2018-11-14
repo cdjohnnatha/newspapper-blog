@@ -34,7 +34,7 @@ RSpec.shared_examples "a not found error" do |id|
   it "should be returns not found message" do
     expect(response.body).not_to be_blank
     expect(response.body).not_to be_empty
-    expect(response.body).to eq( '{"errors":[{"title":"Record not found","detail":"The record identified by ' + id.to_s + ' could not be found.","code":"404","status":"404"}]}')
+    expect(response.body).to eq('{"errors":[{"title":"Record not found","detail":"The record identified by ' + id.to_s + ' could not be found.","code":"404","status":"404"}]}')
   end
 end
 
