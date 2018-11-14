@@ -11,6 +11,23 @@ RSpec.describe "Articles", type: :request do
   let(:invalid_attrs) { makeJson("articles", article.id, attributes_for(:article, title: nil, user: user)) }
   let(:invalid_id_attrs) { makeJson("articles", -1, attributes_for(:article, title: nil, user: user)) }
 
+
+  describe "/api/v1/articles" do
+    context "GET" do
+      context "not logger"
+      before { create_list(:article, 3) }
+      before(:each) { get v1_articles_path('en'), headers: header }
+      it "should be returns success" do
+        expect(response).to have_http_status(200)
+      end
+
+      it "should be returns a users list" do
+        expect(json).not_to be_blank
+        expect(json).not_to be_empty
+        expect(json["data"].count).to be >= 1
+      end
+    end
+  end
   describe "/api/v1/users/:id/articles" do
     context "GET" do
         context "not logger"

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         jsonapi_resources :users do
           jsonapi_resources :articles
         end
+
+        jsonapi_resources :articles, only: [:index, :show]
       end
     end
   end

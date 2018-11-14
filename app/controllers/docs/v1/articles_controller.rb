@@ -3,11 +3,58 @@
 class Docs::V1::ArticlesController
   include Swagger::Blocks
 
-  swagger_path "/users/{id}/articles/" do
+  swagger_path "/articles/" do
     operation :get do
       key :sumary, "Get all articles"
       key :description, "Returns all articles"
       key :operationId, "indexArticles"
+      key :produces, [
+        "application/vnd.api+json"
+      ]
+      key :tags, [
+        "articles"
+      ]
+      security do
+        key :auth, []
+      end
+      response 200 do
+        key :description, "articles response"
+      end
+    end
+  end
+
+  swagger_path "/articles/{id}" do
+    operation :get do
+      key :sumary, "Get an articles"
+      key :description, "Returns an article"
+      key :operationId, "showArticle"
+      key :produces, [
+        "application/vnd.api+json"
+      ]
+      key :tags, [
+        "articles"
+      ]
+      security do
+        key :auth, []
+      end
+      parameter do
+        key :in, :path
+        key :name, :id
+        key :description, "Id of article"
+        key :required, true
+        key :type, :integer
+      end
+      response 200 do
+        key :description, "articles response"
+      end
+    end
+  end
+
+  swagger_path "/users/{id}/articles/" do
+    operation :get do
+      key :sumary, "Get all articles from user"
+      key :description, "Returns all articles"
+      key :operationId, "indexUserArticles"
       key :produces, [
         "application/vnd.api+json"
       ]
@@ -31,7 +78,7 @@ class Docs::V1::ArticlesController
 
     operation :post do
       key :description, "Creates a new article at store."
-      key :operationId, "addarticle"
+      key :operationId, "addArticle"
       key :produces, [
         "application/vnd.api+json"
       ]
