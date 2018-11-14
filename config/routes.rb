@@ -8,7 +8,9 @@ Rails.application.routes.draw do
         resources :docs, only: [:index]
 
         jsonapi_resources :users do
-          jsonapi_resources :articles
+          jsonapi_resources :articles do
+            jsonapi_resources :comments
+          end
         end
       end
     end
