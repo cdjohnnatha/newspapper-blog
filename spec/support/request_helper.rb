@@ -11,10 +11,24 @@ module RequestHelper
     end
     object.to_json
   end
-  def makeJsonRelationship(className, id, attributes, parentClassName, parentId)
+  def buildParents(parents)
+    parents = parents.map do |element|
+      {
+        "#{element[:type]}": {
+          data: {
+            type: "#{element[:type].pluralize}",
+            id: "#{element[:id]}"
+          }
+        }
+      }
+    end
+    parents.map{ |element| [element.keys.first, element[element.keys.first] ] }.to_h
+  end
+
+  def makeJsonRelationship(className, id, attributes, parents)
     object = JSON.parse(makeJson(className, id, attributes))
-    relationObject = { "#{parentClassName}": { data: { "type": "#{parentClassName.pluralize}", "id": "#{parentId}" } } }
-    object["data"]["relationships"] = relationObject
+    parents = buildParents(parents)
+    object["data"]["relationships"] = parents
     object.to_json
   end
 end

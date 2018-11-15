@@ -3,6 +3,7 @@
 module Api::V1
   class UserResource < JSONAPI::Resource
     has_many :articles
+    has_many :comments
 
     attributes :name, :email, :password
 

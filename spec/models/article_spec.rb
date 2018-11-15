@@ -15,8 +15,12 @@ RSpec.describe Article, type: :model do
     it "has title" do
       expect(build(:article, title: "testTitle")).to have_attributes(title: "testTitle")
     end
-    it "has name" do
+    it "has content" do
       expect(build(:article, content: "Any content large")).to have_attributes(content: "Any content large")
     end
+  end
+
+  context "relationships" do
+    it { should belong_to(:user) }
   end
 end

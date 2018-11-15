@@ -44,6 +44,8 @@ module Api::V1
       Docs::V1::UsersController,
       Docs::Article,
       Docs::V1::ArticlesController,
+      Docs::Comment,
+      Docs::V1::ArticlesCommentsController,
       self,
     ].freeze
 

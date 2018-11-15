@@ -8,12 +8,12 @@ Rails.application.routes.draw do
         resources :docs, only: [:index]
 
         jsonapi_resources :users do
-          jsonapi_resources :articles do
-            jsonapi_resources :comments
-          end
+          jsonapi_resources :articles
         end
 
-        jsonapi_resources :articles, only: [:index, :show]
+        jsonapi_resources :articles, only: [:index, :show] do
+          jsonapi_resources :comments, except: [:show]
+        end
       end
     end
   end

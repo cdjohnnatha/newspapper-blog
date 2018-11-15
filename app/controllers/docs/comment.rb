@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Docs::Article
+class Docs::Comment
   include Swagger::Blocks
 
-  swagger_schema :Article do
+  swagger_schema :Comment do
     key :format, :object
     key :required, [:data]
 
@@ -21,14 +21,10 @@ class Docs::Article
 
       property :attributes do
         key :format, :object
-        key :required, [:title, :content]
+        key :required, [:content]
 
         property :id do
           key :type, :integer
-        end
-
-        property :title do
-          key :type, :string
         end
 
         property :content do
@@ -38,7 +34,7 @@ class Docs::Article
     end
   end
 
-  swagger_schema :ArticleInput do
+  swagger_schema :CommentInput do
     property :data do
       key :format, :object
       key :required, [:type, :attributes, :relationships]
@@ -66,7 +62,7 @@ class Docs::Article
 
       property :relationships do
         key :format, :object
-        key :required, [:user]
+        key :required, [:user, :article]
         property :user do
           key :format, :object
           key :required, [:data]
@@ -81,7 +77,23 @@ class Docs::Article
             end
           end
         end
+        property :article do
+          key :format, :object
+          key :required, [:data]
+          property :data do
+            key :format, :object
+            key :required, [:type, :id]
+            property :type do
+              key :type, :string
+            end
+            property :id do
+              key :type, :integer
+            end
+          end
+        end
+
       end
+
     end
   end
 end
