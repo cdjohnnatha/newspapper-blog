@@ -19,7 +19,7 @@ gem "puma", "~> 3.11"
 gem "bcrypt", "~> 3.1.7"
 
 # Seamless JWT authentication for Rails API
-gem "knock"
+# gem "knock"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -39,10 +39,13 @@ gem "rubocop", require: false
 gem "swagger-blocks"
 
 gem "active_model_serializers"
+gem 'devise'
+gem "pundit"
 
 #
 gem "jsonapi-resources"
-gem "jsonapi-utils", "~> 0.7.2"
+gem "jsonapi-utils"
+gem 'jsonapi-authorization'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   post "user_token" => "user_token#create"
   scope module: :api do
     scope "(:locale)", locale: /en|nl/ do
