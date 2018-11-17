@@ -5,7 +5,7 @@ module Api::V1
     has_many :articles
     has_many :comments
 
-    attributes :name, :email, :password
+    attributes :name, :email, :password, :nickname
 
     def fetchable_fields
       super - [:password]
