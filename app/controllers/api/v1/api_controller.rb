@@ -3,9 +3,18 @@
 module Api::V1
   class ApiController < ApplicationController
     include JSONAPI::ActsAsResourceController
-    # Prevent CSRF attacks by raising an exception.
-    # For APIs, you may want to use :null_session instead.
+
     before_action :authenticate_user!
-    before_action :configure_permitted_parameters, if: :devise_controller?
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+
+    private
+      def context
+        {user: current_user}
+      end
+
+      def user_not_authorized
+        head :forbidden
+      end
   end
 end
