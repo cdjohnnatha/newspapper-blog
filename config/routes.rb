@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
 
   scope module: :api do
-    mount_devise_token_auth_for 'User', at: 'auth'
+    mount_devise_token_auth_for "User", at: "auth"
     scope "(:locale)", locale: /en|nl/ do
       namespace :v1 do
         resources :docs, only: [:index]

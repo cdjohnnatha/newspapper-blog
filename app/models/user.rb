@@ -6,11 +6,11 @@ class User < ApplicationRecord
   :trackable, :validatable, :registerable,
   :omniauthable
   include DeviseTokenAuth::Concerns::User
-#   has_secure_password
+  #   has_secure_password
   has_many :articles
   has_many :comments
 
-	validates :name, presence: true
+  validates :name, presence: true
   validates :nickname, presence: true
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, presence: { on: :create }, length: { minimum: 8, allow_blank: true }

@@ -10,4 +10,4 @@
 # user = User.create([{name: "newspapper_user", email: "user@newspapper.com", password: "newspapperuser"}, {name: "newspapper_user2", email: "user@newspapper2.com", password: "newspapperuser2"}])
 user = User.find(1)
 article = Article.create([title: "newspapper one", content: "lorem", user_id: user.id])
-Comment.create([{content: "lorem ipsum", user_id: user.id, article_id: article[0].id }, {content: "lorem ipsum", user_id: user.id, article_id: article[0].id }])
+Comment.create([{ content: "lorem ipsum", user_id: user.id, article_id: article[0].id }, { content: "lorem ipsum", user_id: user.id, article_id: article[0].id }])

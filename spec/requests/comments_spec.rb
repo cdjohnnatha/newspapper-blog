@@ -1,23 +1,25 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "Comments", type: :request do
   let(:article) { create(:article_with_comments) }
   let(:user) { create(:user) }
   let(:valid_attrs) {
-    makeJsonRelationship("comments", nil, attributes_for(:comment), [{type: "user", id: user.id}, type: "article", id: article.id] )
+    makeJsonRelationship("comments", nil, attributes_for(:comment), [{ type: "user", id: user.id }, type: "article", id: article.id])
   }
   let(:invalid_attrs) {
-    makeJsonRelationship("comments", article.comments[0].id, attributes_for(:comment, content: nil), [{type: "user", id: user.id}, type: "article", id: article.id] )
+    makeJsonRelationship("comments", article.comments[0].id, attributes_for(:comment, content: nil), [{ type: "user", id: user.id }, type: "article", id: article.id])
   }
   let(:invalid_id_attrs) {
-    makeJsonRelationship("comments", -1, attributes_for(:comment), [{type: "user", id: user.id}, type: "article", id: article.id] )
+    makeJsonRelationship("comments", -1, attributes_for(:comment), [{ type: "user", id: user.id }, type: "article", id: article.id])
   }
   let(:header) { { 'Accept': "application/vnd.api+json", 'Content-Type': "application/vnd.api+json" } }
 
   describe "/api/v1/articles/:id/comments" do
     context "GET" do
       before { create(:article) }
-      before(:each) { get v1_article_comments_path('en', article.id), headers: header }
+      before(:each) { get v1_article_comments_path("en", article.id), headers: header }
       it "should be returns success" do
         expect(response).to have_http_status(200)
       end
@@ -31,7 +33,7 @@ RSpec.describe "Comments", type: :request do
 
     context "POST" do
       context "valid article attributes" do
-        before(:each) { post v1_article_comments_path('en', article.id), params: valid_attrs, headers: header }
+        before(:each) { post v1_article_comments_path("en", article.id), params: valid_attrs, headers: header }
         it { expect(response).to have_http_status(201) }
 
         it_behaves_like "a comment attributes" do
@@ -50,7 +52,7 @@ RSpec.describe "Comments", type: :request do
     describe "/v1/articles/:id/comments" do
       context "PUT" do
         let(:new_valid_attrs) {
-          makeJsonRelationship("comments", article.comments[0].id, attributes_for(:comment), [{type: "user", id: user.id}, type: "article", id: article.id] )
+          makeJsonRelationship("comments", article.comments[0].id, attributes_for(:comment), [{ type: "user", id: user.id }, type: "article", id: article.id])
         }
         context "valid_user_attrs" do
           before(:each) { put v1_article_comment_path("en", article.id, article.comments[0].id), params: new_valid_attrs, headers: header }

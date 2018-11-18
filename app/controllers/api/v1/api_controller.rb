@@ -10,7 +10,7 @@ module Api::V1
 
     private
       def context
-        {user: current_user}
+        { user: current_user }
       end
 
       def user_not_authorized

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ArticlePolicy < ApplicationPolicy
   def index?
-      true
+    true
   end
 
   def create?

@@ -16,7 +16,7 @@ RSpec.describe "Articles", type: :request do
     context "GET" do
       context "not logger"
       before { create_list(:article, 3) }
-      before(:each) { get v1_articles_path('en'), headers: header }
+      before(:each) { get v1_articles_path("en"), headers: header }
       it "should be returns success" do
         expect(response).to have_http_status(200)
       end
@@ -31,7 +31,7 @@ RSpec.describe "Articles", type: :request do
   describe "/api/v1/users/:id/articles" do
     context "GET" do
         context "not logger"
-        before(:each) { get v1_user_articles_path('en', user.id), headers: header }
+        before(:each) { get v1_user_articles_path("en", user.id), headers: header }
         it "should be returns success" do
           expect(response).to have_http_status(200)
         end
@@ -44,7 +44,7 @@ RSpec.describe "Articles", type: :request do
       end
     context "POST" do
       context "valid article attributes" do
-        before(:each) { post v1_user_articles_path('en', user.id), params: valid_attrs, headers: header }
+        before(:each) { post v1_user_articles_path("en", user.id), params: valid_attrs, headers: header }
         it { expect(response).to have_http_status(201) }
 
 
@@ -83,33 +83,33 @@ RSpec.describe "Articles", type: :request do
       end
 
     context "PUT" do
-      let(:new_valid_attrs) { makeJson("articles", article.id, attributes_for(:article, user: user)) }
-      context "valid_articles_attrs" do
-        before(:each) { put v1_user_article_path("en", user.id, article.id), params: new_valid_attrs, headers: header }
+    let(:new_valid_attrs) { makeJson("articles", article.id, attributes_for(:article, user: user)) }
+    context "valid_articles_attrs" do
+      before(:each) { put v1_user_article_path("en", user.id, article.id), params: new_valid_attrs, headers: header }
 
-        it "should be returns success" do
-          expect(response.content_type).to eq("application/vnd.api+json")
-          expect(response).to have_http_status(200)
-        end
+      it "should be returns success" do
+        expect(response.content_type).to eq("application/vnd.api+json")
+        expect(response).to have_http_status(200)
+      end
 
       # it_behaves_like "an user attributes" do
       #   let(:body) { json }
       #   let(:attrs) { JSON.parse(new_valid_attrs) }
       # end
-      end
-      context "invalid_articles_attrs" do
-        describe "invalid id" do
-            before(:each) { put v1_user_article_path("en", user.id, -1), params: invalid_id_attrs, headers: header }
+    end
+    context "invalid_articles_attrs" do
+      describe "invalid id" do
+          before(:each) { put v1_user_article_path("en", user.id, -1), params: invalid_id_attrs, headers: header }
 
-            it_behaves_like "a not found error", -1
-          end
-
-        describe "invalid params" do
-          before(:each) { put v1_user_article_path("en", user.id, article.id), params: invalid_attrs, headers: header }
-
-          it_behaves_like "a unprocessable error", :article
+          it_behaves_like "a not found error", -1
         end
+
+      describe "invalid params" do
+        before(:each) { put v1_user_article_path("en", user.id, article.id), params: invalid_attrs, headers: header }
+
+        it_behaves_like "a unprocessable error", :article
       end
+    end
   end
 
     context "PATCH" do

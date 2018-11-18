@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserPolicy < ApplicationPolicy
   def index?
     false
@@ -28,7 +30,7 @@ class UserPolicy < ApplicationPolicy
       true if user == record
     end
 
-    # def article
-    #   record
-    # end
+  # def article
+  #   record
+  # end
 end
