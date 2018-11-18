@@ -3,7 +3,7 @@
 class Docs::V1::ArticlesController
   include Swagger::Blocks
 
-  swagger_path "/articles/" do
+  swagger_path "/v1/articles/" do
     operation :get do
       key :sumary, "Get all articles"
       key :description, "Returns all articles"
@@ -23,7 +23,7 @@ class Docs::V1::ArticlesController
     end
   end
 
-  swagger_path "/articles/{id}" do
+  swagger_path "/v1/articles/{id}" do
     operation :get do
       key :sumary, "Get an articles"
       key :description, "Returns an article"
@@ -112,7 +112,7 @@ class Docs::V1::ArticlesController
     end
   end
 
-  swagger_path "/users/{user_id}/articles/{id}" do
+  swagger_path "/v1/users/{user_id}/articles/{id}" do
     operation :get do
       key :description, "Returns a single article"
       key :operationId, "findarticleById"

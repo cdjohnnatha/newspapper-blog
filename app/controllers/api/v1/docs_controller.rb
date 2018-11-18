@@ -4,8 +4,9 @@ require "dotenv/load"
 
 module Api::V1
   class DocsController < ApiController
-    # skip_before_action :authenticate_user
-    # skip_load_and_authorize_resource
+    skip_before_action :authenticate_user!
+    skip_before_action :ensure_correct_media_type
+    skip_before_action :ensure_valid_accept_media_type
     include Swagger::Blocks
 
     swagger_root do
@@ -27,19 +28,37 @@ module Api::V1
         key :description, "Newspapper-blog api operations"
       end
       key :host, ENV["DOCS_HOST"]
-      key :basePath, "/v1"
+      key :basePath, "/"
       key :consumes, ["application/vnd.api+json"]
       key :produces, ["application/vnd.api+json"]
 
-      security_definition :auth do
-        key :type, :apiKey
-        key :name, "Authorization"
+      # security_definition "token-type", type: :apiKey do
+      #   key :name, "token-type"
+      #   key :in, :header
+      # end
+      # "uid: claudio@c22a222.com.br"
+      security_definition :uid, type: :apiKey do
+        key :name, :uid
+        key :in, :header
+      end
+      security_definition :tokenType, type: :apiKey do
+        key :name, "token-type"
+        key :in, :header
+      end
+      security_definition :accessToken, type: :apiKey do
+        key :name, "access-token"
+        key :in, :header
+      end
+      security_definition :client, type: :apiKey do
+        key :name, :client
         key :in, :header
       end
     end
 
     # A list of all classes that have swagger_* declarations.
     SWAGGERED_CLASSES = [
+      Docs::Authentication,
+      Docs::V1::AuthenticationController,
       Docs::User,
       Docs::V1::UsersController,
       Docs::Article,

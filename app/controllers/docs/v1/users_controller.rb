@@ -3,25 +3,7 @@
 class Docs::V1::UsersController
   include Swagger::Blocks
 
-  swagger_path "/users" do
-    operation :get do
-      key :sumary, "Get all users"
-      key :description, "Returns all users"
-      key :operationId, "indexUsers"
-      key :produces, [
-        "application/vnd.api+json"
-      ]
-      key :tags, [
-        "Users"
-      ]
-      security do
-        key :auth, []
-      end
-      response 200 do
-        key :description, "users response"
-      end
-    end
-
+  swagger_path "/v1/users" do
     operation :post do
       key :description, "Creates a new user at store. Email is unique"
       key :operationId, "addUser"
@@ -50,7 +32,7 @@ class Docs::V1::UsersController
     end
   end
 
-  swagger_path "/users/{id}" do
+  swagger_path "/v1/users/{id}" do
     operation :get do
       key :description, "Returns a single user"
       key :operationId, "findUserById"
@@ -62,6 +44,9 @@ class Docs::V1::UsersController
       ]
       security do
         key :auth, []
+        key :tokenType, []
+        key :accessToken, []
+        key :client, []
       end
       parameter do
         key :in, :path
@@ -89,6 +74,11 @@ class Docs::V1::UsersController
       ]
       security do
         key :auth, []
+        key :tokeyType, []
+        # key :uid, []
+        # key "token-type", []
+        # key "access-token", []
+        # key :client, []
       end
 
       parameter do

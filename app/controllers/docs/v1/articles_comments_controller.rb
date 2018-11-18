@@ -3,7 +3,7 @@
 class Docs::V1::ArticlesCommentsController
   include Swagger::Blocks
 
-  swagger_path "/articles/{id}/comments" do
+  swagger_path "/v1/articles/{id}/comments" do
     operation :get do
       key :sumary, "Get all comments from article"
       key :description, "Returns all articles"
@@ -65,7 +65,7 @@ class Docs::V1::ArticlesCommentsController
     end
   end
 
-  swagger_path "/articles/{article_id}/comments/{id}" do
+  swagger_path "/v1/articles/{article_id}/comments/{id}" do
     operation :put do
       key :description, "Update comment informations in article"
       key :operationId, "updateComment"
