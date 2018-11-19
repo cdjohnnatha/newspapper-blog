@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :docs, only: [:index]
 
-        jsonapi_resources :users
         jsonapi_resources :articles
+        jsonapi_resources :users
         jsonapi_resources :comments, except: [:show]
       end
     end
