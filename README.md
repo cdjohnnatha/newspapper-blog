@@ -133,9 +133,9 @@ build_postgresdb    | Start a postgresdb in container (Just if is not installed)
 The application follows the [JSON-API](https://jsonapi.org/) patterns, using a  
 After application running, you can check all the routes, json formats and test it using swagger accessing **/v1/docs**
 
-Path                | Action  | Description                       |
----                 | ---     | ---                               |
-/api/v1/docs        |  GET    | Swagger docs to test application  |
+Path                | Action  | Description                   |
+---                 | ---     | ---                           |
+/v1/docs        |  GET    | Swagger docs to test application  |
 
 ## 7. <a name='Frotend'></a>Frontend
 The frontend application can be find in: [blogger-front-react](https://github.com/cdjohnnatha/blogger-front-react)
