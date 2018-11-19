@@ -19,6 +19,14 @@ class Docs::Article
         key :type, :string
       end
 
+      property :links do
+        key :format, :object
+        key :required, [:self]
+        property :self do
+          key :type, :string
+        end
+      end
+
       property :attributes do
         key :format, :object
         key :required, [:title, :content]
@@ -33,6 +41,34 @@ class Docs::Article
 
         property :content do
           key :type, :string
+        end
+      end
+      property :relationships do
+        key :format, :object
+        key :required, [:user, :comments]
+
+        property :user do
+          key :format, :object
+          key :required, [:self, :related]
+
+          property :self do
+            key :type, :string
+          end
+          property :related do
+            key :type, :string
+          end
+        end
+
+        property :comments do
+          key :format, :object
+          key :required, [:self, :related]
+
+          property :self do
+            key :type, :string
+          end
+          property :related do
+            key :type, :string
+          end
         end
       end
     end

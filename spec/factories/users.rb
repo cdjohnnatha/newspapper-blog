@@ -3,10 +3,16 @@
 require "faker"
 
 FactoryBot.define do
+  passwords = Faker::Internet::password
   factory :user do
     name { Faker::Name.name }
+    nickname { Faker::Internet.username }
     email { Faker::Internet::email }
-    password { Faker::Internet::password }
+    password { '12345678' }
+
+    trait :auth do
+      password_confirmation { '12345678' }
+    end
 
     # user_with_articles will create articles data after the user has been created
     factory :user_with_articles do

@@ -19,7 +19,7 @@ RSpec.shared_examples "a unauthorized error with message" do
   it "should not be returns aunauthorized message" do
     expect(response.body).to_not be_blank
     expect(response.body).to_not be_empty
-    expect(response.body).to eq('{"message":"You are not authorized to access this page."}')
+    expect(response.body).to eq('{"errors":["You need to sign in or sign up before continuing."]}')
   end
 end
 

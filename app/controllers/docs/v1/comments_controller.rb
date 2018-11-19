@@ -1,34 +1,9 @@
 # frozen_string_literal: true
 
-class Docs::V1::ArticlesCommentsController
+class Docs::V1::CommentsController
   include Swagger::Blocks
 
-  swagger_path "/articles/{id}/comments" do
-    operation :get do
-      key :sumary, "Get all comments from article"
-      key :description, "Returns all articles"
-      key :operationId, "indexArticleComments"
-      key :produces, [
-        "application/vnd.api+json"
-      ]
-      key :tags, [
-        "articles comments"
-      ]
-      security do
-        key :auth, []
-      end
-      parameter do
-        key :in, :path
-        key :name, :id
-        key :description, "Id of article"
-        key :required, true
-        key :type, :integer
-      end
-      response 200 do
-        key :description, "comments response"
-      end
-    end
-
+  swagger_path "/v1/comments" do
     operation :post do
       key :description, "Creates a new comment in article."
       key :operationId, "addArticleComments"
@@ -36,7 +11,7 @@ class Docs::V1::ArticlesCommentsController
         "application/vnd.api+json"
       ]
       key :tags, [
-        "articles comments"
+        "Comments"
       ]
 
       parameter do
@@ -45,6 +20,12 @@ class Docs::V1::ArticlesCommentsController
         key :description, "Id of article"
         key :required, true
         key :type, :integer
+      end
+      security do
+        key :uid, []
+        key :tokenType, []
+        key :accessToken, []
+        key :client, []
       end
 
       parameter do
@@ -65,7 +46,7 @@ class Docs::V1::ArticlesCommentsController
     end
   end
 
-  swagger_path "/articles/{article_id}/comments/{id}" do
+  swagger_path "/v1/comments/{id}" do
     operation :put do
       key :description, "Update comment informations in article"
       key :operationId, "updateComment"
@@ -73,10 +54,13 @@ class Docs::V1::ArticlesCommentsController
         "application/vnd.api+json"
       ]
       key :tags, [
-        "articles comments"
+        "Comments"
       ]
       security do
-        key :auth, []
+        key :uid, []
+        key :tokenType, []
+        key :accessToken, []
+        key :client, []
       end
 
       parameter do
@@ -118,10 +102,13 @@ class Docs::V1::ArticlesCommentsController
       key :description, "Delete an comment"
       key :operationId, "deleteComment"
       key :tags, [
-        "articles comments"
+        "Comments"
       ]
       security do
-        key :auth, []
+        key :uid, []
+        key :tokenType, []
+        key :accessToken, []
+        key :client, []
       end
 
       parameter do

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Api::V1
-  class UserResource < JSONAPI::Resource
+  class UserResource < Api::V1::BaseResource
     has_many :articles
     has_many :comments
 
-    attributes :name, :email, :password
+    attributes :name, :nickname, :email, :password
 
     def fetchable_fields
       super - [:password]

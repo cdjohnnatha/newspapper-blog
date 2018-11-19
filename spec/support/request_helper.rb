@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'rails_helper'
+include ActionController::RespondWith
 
 module RequestHelper
   def json
@@ -22,7 +24,7 @@ module RequestHelper
         }
       }
     end
-    parents.map{ |element| [element.keys.first, element[element.keys.first] ] }.to_h
+    parents.map { |element| [element.keys.first, element[element.keys.first] ] }.to_h
   end
 
   def makeJsonRelationship(className, id, attributes, parents)
@@ -30,6 +32,13 @@ module RequestHelper
     parents = buildParents(parents)
     object["data"]["relationships"] = parents
     object.to_json
+  end
+
+  def authorization(user)
+    auth_headers = user.create_new_auth_token
+    auth_headers["Accept"] = "application/vnd.api+json"
+    auth_headers["Content-Type"] = "application/vnd.api+json"
+    auth_headers
   end
 end
 
