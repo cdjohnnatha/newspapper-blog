@@ -17,7 +17,7 @@ class CommentPolicy < ApplicationPolicy
     user_present? && is_owner?
   end
 
-  def delete?
+  def destroy?
     user_present? && is_owner?
   end
 

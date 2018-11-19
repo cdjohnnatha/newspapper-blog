@@ -14,7 +14,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def update?
-    user_present? && is_owner?
+    user_present?
   end
 
   def destroy?

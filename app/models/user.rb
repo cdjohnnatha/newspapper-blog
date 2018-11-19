@@ -14,5 +14,5 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, presence: { on: :create }, length: { minimum: 8, allow_blank: true }
-  validates :password_confirmation, presence: true, on: :create, length: { minimum: 8, allow_blank: true }
+  # validates :password_confirmation, presence: true, on: :create, length: { minimum: 8, allow_blank: true }
 end

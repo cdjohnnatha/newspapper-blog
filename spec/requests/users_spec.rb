@@ -140,16 +140,16 @@ RSpec.describe "Users", type: :request do
           end
         end
 
-        context "invalid_user_attrs" do
-          before(:each) { delete v1_user_path("en", 0), headers: authorization(user) }
+        # context "invalid_user_attrs" do
+        #   before(:each) { delete user_registration_path("en", -1), headers: authorization(user) }
 
-          it_behaves_like "a not found error", 0
-        end
+        #   it_behaves_like "a not found error", 0
+        # end
       end
-      context "logged out" do
-        before(:each) { patch v1_user_path("en", user.id), headers: header }
-        it_behaves_like "a unauthorized error with message", 1
-      end
+      # context "logged out" do
+      #   before(:each) { delete user_registration_path("en", user.id), headers: header }
+      #   it_behaves_like "a unauthorized error with message", 1
+      # end
     end
   end
 end

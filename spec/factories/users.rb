@@ -8,9 +8,9 @@ FactoryBot.define do
     name { Faker::Name.name }
     nickname { Faker::Internet.username }
     email { Faker::Internet::email }
+    password { '12345678' }
 
     trait :auth do
-      password { '12345678' }
       password_confirmation { '12345678' }
     end
 
