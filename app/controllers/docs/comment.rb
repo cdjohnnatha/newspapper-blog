@@ -43,17 +43,9 @@ class Docs::Comment
         key :type, :string
       end
 
-      property :id do
-        key :type, :integer
-      end
-
       property :attributes do
         key :format, :object
-        key :required, [:title, :content]
-
-        property :title do
-          key :type, :string
-        end
+        key :required, [:content]
 
         property :content do
           key :type, :string

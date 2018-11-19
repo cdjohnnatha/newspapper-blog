@@ -32,11 +32,6 @@ module Api::V1
       key :consumes, ["application/vnd.api+json"]
       key :produces, ["application/vnd.api+json"]
 
-      # security_definition "token-type", type: :apiKey do
-      #   key :name, "token-type"
-      #   key :in, :header
-      # end
-      # "uid: claudio@c22a222.com.br"
       security_definition :uid, type: :apiKey do
         key :name, :uid
         key :in, :header
@@ -64,7 +59,7 @@ module Api::V1
       Docs::Article,
       Docs::V1::ArticlesController,
       Docs::Comment,
-      Docs::V1::ArticlesCommentsController,
+      Docs::V1::CommentsController,
       self,
     ].freeze
 
