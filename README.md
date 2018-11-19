@@ -5,8 +5,7 @@ The intention to make a blog was changed to something similar as newspapper, pas
 ## Table of Contents
 
 <!-- vscode-markdown-toc -->
-
-- 1. [Demo](#Demo)
+- 1. [Authentication](#Authentication)
 - 2. [Requirements](#Requirements)
 - 3. [Installation](#Installation)
 - 4. [The Challenge](#TheChallenge)
@@ -16,6 +15,13 @@ The intention to make a blog was changed to something similar as newspapper, pas
 - 7. [Swagger](#Swagger)
 - 8. [Front-end](#Frontend)
 
+## 1. <a name='Authentication'></a>Authentication
+
+For system authentication is required tokens to be set up at header. After send correct emails and password, in response object header you will find few keys, there are the required ones: **access-token**, **client**, **uid**, **token-type**. It's required set them up in header for each request. **IF not setted, it will get 403 in the most of requests**.
+
+Path                 | Action   | Description                       |
+---                  | ---      | ---                               |
+/auth/sign_in        |  POST    | Authentication module             |
 
 ## 2. <a name='Requirements'></a>Requirements
 - [Ruby on Rails](https://rubyonrails.org/)
