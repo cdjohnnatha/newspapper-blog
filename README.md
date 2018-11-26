@@ -15,6 +15,10 @@ The intention to make a blog was changed to something similar as newspapper, pas
 - 7. [Swagger](#Swagger)
 - 8. [Front-end](#Frontend)
 
+## 0.
+
+**Take a look in which port runs the backend, if you are using with the blogger-front-react it syncronizes with backend in 3001 port. if you start by default newspapper-blog it will take the port 3000**
+
 ## 1. <a name='Authentication'></a>Authentication
 
 For system authentication is required tokens to be set up at header. After send correct emails and password, in response object header you will find few keys, there are the required ones: **access-token**, **client**, **uid**, **token-type**. It's required set them up in header for each request. **IF not setted, it will get 403 in the most of requests**.
@@ -57,7 +61,7 @@ git clone https://github.com/cdjohnnatha/newspapper-blog.git
   rails db:create
   rails db:migrate
   rails db:seed
-  rails s
+  rails s -p 3001
   ```
 
 ## 4. <a name='TheChallenge'></a>The Challenge
